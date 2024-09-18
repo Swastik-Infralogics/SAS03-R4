@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SAS03 - Admin Panel</title>
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Project Progress</h1>
+    </header>
+    
+    <!-- Admin Login Section -->
+    <div id="admin-login">
+        <input type="text" id="SAS03" placeholder="Username">
+        <input type="password" id="Swastik@123#" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <!-- Admin Panel (hidden initially) -->
+    <div id="admin-panel" style="display:none;">
+        <h3>Monthly Physical Progress</h3>
+        <div class="table-container">
+            <table id="monthly-progress">
+                <!-- Monthly Progress Table Content -->
+            </table>
+        </div>
+
+        <h3>Weekly Physical Progress - September 2024</h3>
+        <div class="table-container">
+            <table id="weekly-progress">
+                <!-- Weekly Progress Table Content -->
+            </table>
+        </div>
+
+        <button onclick="updateData()">Update</button>
+    </div>
+
+    <script>
+        let isAdmin = false;
+
+        // Load data from JSON
+        fetch('/progress-data.json')
+        .then(response => response.json())
+        .then(data => {
+            populateMonthlyProgress(data.monthlyProgress);
+            populateWeeklyProgress(data.weeklyProgress);
+        });
+
+        // Populate Monthly Progress Table
+        function populateMonthlyProgress(data) {
+            const table = document.getElementById("monthly-progress");
+            table.innerHTML = `
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Description</th>
+                    <th>Up-to Previous Month</th>
+                    <th>Current Month</th>
+                    <th>Up-to Date (%)</th>
+                </tr>`;
+            data.forEach((item, index) => {
+                table.innerHTML += `<tr>
+                    <td>${index + 1}</td>
+                    <td contenteditable="${isAdmin}">${item.description}</td>
+                    <td contenteditable="${isAdmin}">${item.previous}</td>
+                    <td contenteditable="${isAdmin}">${item.current}</td>
+                    <td contenteditable="${isAdmin}">${item.total}</td>
+                </tr>`;
+            });
+        }
+
+        // Populate Weekly Progress Table
+        function populateWeeklyProgress(data) {
+            const table = document.getElementById("weekly-progress");
+            table.innerHTML = `
+                <tr>
+                    <th>Sl. No.</th>
+                    <th>Description</th>
+                    <th>Week - 1</th>
+                    <th>Week - 2</th>
+                    <th>Week - 3</th>
+                    <th>Week - 4</th>
+                    <th>Total</th>
+                </tr>`;
+            data.forEach((item, index) => {
+                table.innerHTML += `<tr>
+                    <td>${index + 1}</td>
+                    <td contenteditable="${isAdmin}">${item.description}</td>
+                    <td contenteditable="${isAdmin}">${item.week1}</td>
+                    <td contenteditable="${isAdmin}">${item.week2}</td>
+                    <td contenteditable="${isAdmin}">${item.week3}</td>
+                    <td contenteditable="${isAdmin}">${item.week4}</td>
+                    <td contenteditable="${isAdmin}">${item.total}</td>
+                </tr>`;
+            });
+        }
+
+        // Login function for admin access
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'admin' && password === 'admin123') {
+                isAdmin = true;
+                document.getElementById("admin-panel").style.display = 'block';
+                document.getElementById("admin-login").style.display = 'none';
+                // Make table cells editable for admin
+                populateMonthlyProgress(data.monthlyProgress);
+                populateWeeklyProgress(data.weeklyProgress);
+            } else {
+                alert("Invalid login");
+            }
+        }
+
+        // Update data and save to JSON (backend part needed)
+        function updateData() {
+            const monthlyRows = document.querySelectorAll('#monthly-progress tr');
+            const weeklyRows = document.querySelectorAll('#weekly-progress tr');
+
+            const updatedMonthlyData = Array.from(monthlyRows).slice(1).map(row => ({
+                description: row.cells[1].innerText,
+                previous: row.cells[2].innerText,
+                current: row.cells[3].innerText,
+                total: row.cells[4].innerText
+            }));
+
+            const updatedWeeklyData = Array.from(weeklyRows).slice(1).map(row => ({
+                description: row.cells[1].innerText,
+                week1: row.cells[2].innerText,
+                week2: row.cells[3].innerText,
+                week3: row.cells[4].innerText,
+                week4: row.cells[5].innerText,
+                total: row.cells[6].innerText
+            }));
+
+            fetch('/update-progress-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    monthlyProgress: updatedMonthlyData,
+                    weeklyProgress: updatedWeeklyData
+                })
+            })
+            .then(response => response.json())
+            .then(() => alert('Data updated. Please refresh to see changes.'));
+        }
+    </script>
+</body>
+</html>
