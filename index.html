@@ -3,151 +3,559 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SAS03 - Admin Panel</title>
+    <title>SAS03-NHAI Standalone Project Information</title>
+    <link rel="icon" href="Swastik S.png" type="image/x-icon">
+    
+    <!-- Open Graph meta tags for social media sharing -->
+    <meta property="og:title" content="SAS03-NHAI Standalone Project Information">
+    <meta property="og:description" content="Construction of 12 Nos of Standalone safety structures/works at different locations on NH-3 in Maharashtra.">
+    <meta property="og:image" content="https://swastik-infralogics.github.io/SAS03/logo.png"> <!-- URL to your logo image -->
+    <meta property="og:url" content="https://swastik-infralogics.github.io/SAS03/">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <style>
-        /* Add your styles here */
+        :root {
+            --primary-color: #6a1b9a;
+            --secondary-color: #4a0e78;
+            --text-color: #333;
+            --background-color: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header, nav, main, footer {
+            width: 100%;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .header-img {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Ensure the navbar stays above other content */
+            text-align: center;
+            background-color: #6a1b9a;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(to bottom, #7b1fa2 0%, #4a148c 100%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            border-bottom: 3px solid #4a148c;
+        }
+
+    
+    	/* 3D effect with box-shadow and gradient */
+   	       background: linear-gradient(to bottom, #7b1fa2 0%, #4a148c 100%); /* Gradient for 3D effect */
+    	   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Adds shadow below the navbar for depth */
+    	   border-bottom: 3px solid #4a148c; /* Darker border at the bottom for more 3D depth */
+        }
+        .nav.sticky {
+            position: fixed; /* Fix navigation bar at the top when scrolled */
+            top: 0;
+            width: 100%;
+        }
+        .nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white; /* White Text for Navigation Links */
+            transition: color 0.3s;
+        }
+        .nav a:hover {
+            color: #ccc; /* Lighter purple for hover effect */
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .nav-links {
+            display: flex;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .nav a:hover {
+            background-color: #4a0e78;
+        }
+
+        h2, h3 {
+            color: var(--primary-color);
+            margin-top: 30px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f3f2f8;
+        }
+
+        .scrollable-content {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #eeebfd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+             text-align: center;
+             padding: 5px;
+             background-color: #6a1b9a;
+             color: white;
+             margin-top: 10px;
+             font-size: 15px;
+             line-height: 1;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Swiper styles */
+        .swiper-container {
+            width: 100%;
+            height: 60vh;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .swiper-button-prev, .swiper-button-next {
+            color: white;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--primary-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav a {
+                padding: 15px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            .hamburger span {
+                background-color: white;
+                height: 3px;
+                width: 25px;
+                margin: 2px 0;
+                display: block;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            .scrollable-content {
+                max-height: 300px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container > * {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .container > *:nth-child(1) { animation-delay: 0.1s; }
+        .container > *:nth-child(2) { animation-delay: 0.2s; }
+        .container > *:nth-child(3) { animation-delay: 0.3s; }
     </style>
 </head>
 <body>
     <header>
-        <h1>Project Progress</h1>
+        <img class="header-img" src="Picture1.jpg" alt="NHAI Header Image" loading="lazy">
     </header>
-    
-    <!-- Admin Login Section -->
-    <div id="admin-login">
-        <input type="text" id="SAS03" placeholder="Username">
-        <input type="password" id="Swastik@123#" placeholder="Password">
-        <button onclick="login()">Login</button>
-    </div>
 
-    <!-- Admin Panel (hidden initially) -->
-    <div id="admin-panel" style="display:none;">
-        <h3>Monthly Physical Progress</h3>
+    <nav class="nav" id="navbar">
+        <div class="nav-content">
+            <div class="hamburger" id="hamburger-menu" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="#">HOME</a>
+                <a href="gallery-r2.html" target="_blank">GALLERY</a>
+                <a href="#projectBackground">PROJECT BACKGROUND</a>
+                <a href="#projectDetails">PROJECT DETAILS</a>
+                <a href="#monthlyProgress">PHYSICAL PROGRESS</a>
+                <a href="#projectVideo">PROJECT VIDEO</a>
+                <a href="#contactDetails">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h2>Name of Work: Construction of 12 Nos of Standalone safety structures/works at different locations on NH-3 in the state of Maharashtra</h2>
+
+        <h3 id="gallery">Gallery</h3>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="P7.jpg" alt="Project Photo 1" loading="lazy"></div>
+                <div class="swiper-slide"><img src="P8.jpg" alt="Project Photo 2" loading="lazy"></div>
+                <div class="swiper-slide"><img src="P10.jpg" alt="Project Photo 3" loading="lazy"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+        <h3 id="projectBackground">Project Background</h3>
+        <div class="scrollable-content">
+            <
+        </div>
+
+        <h3 id="projectDetails">Project Details</h3>
         <div class="table-container">
-            <table id="monthly-progress">
-                <!-- Monthly Progress Table Content -->
+            <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Information</th>
+                </tr>
+                <tr>
+                    <td>Name of the Project</td>
+                    <td>Construction of 12 Nos of Standalone safety structures/works at different locations on NH-3 in the state of Maharashtra</td>
+                </tr>
+                <tr>
+                    <td>Client</td>
+                    <td>National Highways Authority of India (NHAI)</td>
+                </tr>
+                <tr>
+                    <td>Contractor</td>
+                    <td>M/s. Swastik - TandT JV</td>
+                </tr>
+                <tr>
+                    <td>Name of the Consultant/Authority Engineer</td>
+                    <td>As of now NHAI itself is supervising</td>
+                </tr>
+                <tr>
+                    <td>Date of Commencement</td>
+                    <td>22nd July 2024</td>
+                </tr>
+                <tr>
+                    <td>Stipulated Date of Completion</td>
+                    <td>21st July 2026</td>
+                </tr>
+                <tr>
+                    <td>Duration</td>
+                    <td>2 Years (Construction)</td>
+                </tr>
             </table>
         </div>
 
-        <h3>Weekly Physical Progress - September 2024</h3>
+        <h3>Locations and Chainages of 12 Nos of Structures</h3>
         <div class="table-container">
-            <table id="weekly-progress">
-                <!-- Weekly Progress Table Content -->
-            </table>
-        </div>
+            <table>
+    <tr>
+        <th>S.No</th>
+        <th>Name of the Location</th>
+        <th>Chainage</th>
+        <th>Google Map Link to Locate Start to End of Structure</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Chalisgaon Junction</td>
+        <td>262+850</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=20.8793,74.7882&destination=20.8735,74.7769&travelmode=driving" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Arvi</td>
+        <td>279+100</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=20.7557,74.7215&destination=20.7476,74.7133&travelmode=walking" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Chalisgaon Phata</td>
+        <td>305+000</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=20.5838,74.5866&destination=20.578,74.5718&travelmode=walking" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Sawadgaon</td>
+        <td>310+660</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=20.5451,74.5626&destination=20.5373,74.5521&travelmode=driving" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Tehre Soygaon Junction</td>
+        <td>318+060</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=20.5318,74.5006&destination=20.5284,74.4901&travelmode=driving" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Chandwad</td>
+        <td>356+780</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=20.333,74.2399&destination=20.329,74.227&travelmode=walking" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>7.a</td>
+        <td>10th Mile Junction</td>
+        <td>401+725</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=20.0756,73.9092&destination=20.0668,73.8962&travelmode=driving" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>7.b</td>
+        <td>Jaulke Dindori</td>
+        <td>403+637</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=20.0668,73.8962&destination=20.0564,73.8852&travelmode=driving" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Indira Nagar</td>
+        <td>418+850</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=19.9832,73.7825&destination=19.9782,73.7783&travelmode=walking" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Rane Nagar</td>
+        <td>420+860</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=19.9679,73.7691&destination=19.964,73.7663&travelmode=walking" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Ambebahula</td>
+        <td>429+120</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=19.922,73.7149&destination=19.9102,73.7048&travelmode=walking" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>Lahe Junction</td>
+        <td>497+586</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=19.5478,73.3618&destination=19.5433,73.3509&travelmode=driving" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>Khativali</td>
+        <td>517+525</td>
+        <td><a href="https://www.google.com/maps/dir/?api=1&origin=19.416,73.2766&destination=19.414,73.2687&travelmode=walking" target="_blank">Locate on Google Maps</a></td>
+    </tr>
+</table>
+</div>
 
-        <button onclick="updateData()">Update</button>
+    <h3 id="monthlyProgress">Monthly Physical Progress</h3>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Description</th>
+                <th>Up-to Previous Month (Up to 31/07/2024)</th>
+                <th>Current Month (For Aug-2024)</th>
+                <th>Up-to Date (%) (Up to 31/08/2024)</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Physical Progress</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+        </table>
     </div>
 
-    <script>
-        let isAdmin = false;
+    <h3 id="weeklyProgress">Weekly Physical Progress - September 2024</h3>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Description</th>
+                <th>Week - 1</th>
+                <th>Week - 2</th>
+                <th>Week - 3</th>
+                <th>Week - 4</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Physical Progress</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+        </table>
+    </div>
 
-        // Load data from JSON
-        fetch('/progress-data.json')
-        .then(response => response.json())
-        .then(data => {
-            populateMonthlyProgress(data.monthlyProgress);
-            populateWeeklyProgress(data.weeklyProgress);
-        });
+    <h3 id="projectVideo">Project Video</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/aP_LVR9S_W0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-        // Populate Monthly Progress Table
-        function populateMonthlyProgress(data) {
-            const table = document.getElementById("monthly-progress");
-            table.innerHTML = `
-                <tr>
-                    <th>Sr. No.</th>
-                    <th>Description</th>
-                    <th>Up-to Previous Month</th>
-                    <th>Current Month</th>
-                    <th>Up-to Date (%)</th>
-                </tr>`;
-            data.forEach((item, index) => {
-                table.innerHTML += `<tr>
-                    <td>${index + 1}</td>
-                    <td contenteditable="${isAdmin}">${item.description}</td>
-                    <td contenteditable="${isAdmin}">${item.previous}</td>
-                    <td contenteditable="${isAdmin}">${item.current}</td>
-                    <td contenteditable="${isAdmin}">${item.total}</td>
-                </tr>`;
-            });
+    <h3 id="contactDetails">Contact Details</h3>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Sl.No</th>
+                <th>Name of Contact Person</th>
+                <th>Designation</th>
+                <th>Contact Number</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Mr. Venkata Sastry</td>
+                <td>Sr. Project Manager</td>
+                <td>+91 96035 06295</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Mr. Nitin Sharma</td>
+                <td>Public Relation Officer</td>
+                <td>+91 88609 12479</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Mr. Gaurav Patil</td>
+                <td>Co-Ordinator</td>
+                <td>+91 86910 17728</td>
+            </tr>
+        </table>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>Disclaimer: The information provided on this site is for general informational purposes only and is subject to change.</p>
+    <p>Site is maintained as part of contract terms by M/s. Swastik Infralogics Pvt Ltd &#174;. All rights reserved.</p>
+</footer>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        loop: true,
+    });
+
+    const hamburger = document.getElementById('hamburger-menu');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+        hamburger.setAttribute('aria-expanded', !expanded);
+    });
+
+    navLinks.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') {
+            navLinks.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', false);
         }
+    }); // Added missing closing brace and parenthesis here
 
-        // Populate Weekly Progress Table
-        function populateWeeklyProgress(data) {
-            const table = document.getElementById("weekly-progress");
-            table.innerHTML = `
-                <tr>
-                    <th>Sl. No.</th>
-                    <th>Description</th>
-                    <th>Week - 1</th>
-                    <th>Week - 2</th>
-                    <th>Week - 3</th>
-                    <th>Week - 4</th>
-                    <th>Total</th>
-                </tr>`;
-            data.forEach((item, index) => {
-                table.innerHTML += `<tr>
-                    <td>${index + 1}</td>
-                    <td contenteditable="${isAdmin}">${item.description}</td>
-                    <td contenteditable="${isAdmin}">${item.week1}</td>
-                    <td contenteditable="${isAdmin}">${item.week2}</td>
-                    <td contenteditable="${isAdmin}">${item.week3}</td>
-                    <td contenteditable="${isAdmin}">${item.week4}</td>
-                    <td contenteditable="${isAdmin}">${item.total}</td>
-                </tr>`;
-            });
-        }
+    // Disable right-click context menu on the entire page
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
+}); // Added missing closing brace and parenthesis for DOMContentLoaded
+       
+</script>
 
-        // Login function for admin access
-        function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            if (username === 'SAS03' && password === 'Swastik@123') {
-                isAdmin = true;
-                document.getElementById("admin-panel").style.display = 'block';
-                document.getElementById("admin-login").style.display = 'none';
-                // Make table cells editable for admin
-                populateMonthlyProgress(data.monthlyProgress);
-                populateWeeklyProgress(data.weeklyProgress);
-            } else {
-                alert("Invalid login");
-            }
-        }
-
-        // Update data and save to JSON (backend part needed)
-        function updateData() {
-            const monthlyRows = document.querySelectorAll('#monthly-progress tr');
-            const weeklyRows = document.querySelectorAll('#weekly-progress tr');
-
-            const updatedMonthlyData = Array.from(monthlyRows).slice(1).map(row => ({
-                description: row.cells[1].innerText,
-                previous: row.cells[2].innerText,
-                current: row.cells[3].innerText,
-                total: row.cells[4].innerText
-            }));
-
-            const updatedWeeklyData = Array.from(weeklyRows).slice(1).map(row => ({
-                description: row.cells[1].innerText,
-                week1: row.cells[2].innerText,
-                week2: row.cells[3].innerText,
-                week3: row.cells[4].innerText,
-                week4: row.cells[5].innerText,
-                total: row.cells[6].innerText
-            }));
-
-            fetch('/update-progress-data', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    monthlyProgress: updatedMonthlyData,
-                    weeklyProgress: updatedWeeklyData
-                })
-            })
-            .then(response => response.json())
-            .then(() => alert('Data updated. Please refresh to see changes.'));
-        }
-    </script>
 </body>
 </html>
