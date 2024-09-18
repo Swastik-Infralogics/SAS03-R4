@@ -306,8 +306,7 @@
     fetch('src/project-background.txt')
     .then(response => response.text())
     .then(data => {
-        // Insert the content of the .txt file into the p element and render it as HTML
-        document.getElementById('projectBackgroundText').innerHTML = data;
+        document.getElementById('projectBackgroundText').textContent = data;
     })
     .catch(error => {
         console.error('Error fetching the file:', error);
