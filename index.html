@@ -298,7 +298,22 @@
 
         <h3 id="projectBackground">Project Background</h3>
         <div class="scrollable-content">
-            <
+            <p id="projectBackgroundText">Loading...</p> <!-- This paragraph will be replaced with the content from the .txt file -->
+            </div>
+
+        <script>
+    // Fetch the content of the .txt file and display it in the paragraph with id="projectBackgroundText"
+    fetch('project-background.txt')
+        .then(response => response.text())
+        .then(data => {
+            // Insert the content of the .txt file into the p element
+            document.getElementById('projectBackgroundText').textContent = data;
+        })
+        .catch(error => {
+            console.error('Error fetching the file:', error);
+            document.getElementById('projectBackgroundText').textContent = 'Error loading project background.';
+        });
+</script>
         </div>
 
         <h3 id="projectDetails">Project Details</h3>
