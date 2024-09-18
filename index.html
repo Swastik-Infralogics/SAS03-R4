@@ -14,18 +14,11 @@
     </header>
     
     <!-- Admin Login Section -->
-    function login() {
-    const username = document.getElementById('SAS03').value; // correct ID for username
-    const password = document.getElementById('Swastik@123#').value; // correct ID for password
-    if (username === 'SAS03' && password === 'Swastik@123') {
-        isAdmin = true;
-        document.getElementById("admin-panel").style.display = 'block';
-        document.getElementById("admin-login").style.display = 'none';
-        // Ensure the table cells are editable for admin
-    } else {
-        alert("Invalid login");
-    }
-}
+    <div id="admin-login">
+        <input type="text" id="SAS03" placeholder="Username">
+        <input type="password" id="Swastik@123#" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
 
     <!-- Admin Panel (hidden initially) -->
     <div id="admin-panel" style="display:none;">
@@ -109,7 +102,7 @@
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            if (username === 'admin' && password === 'admin123') {
+            if (username === 'SAS03' && password === 'Swastik@123') {
                 isAdmin = true;
                 document.getElementById("admin-panel").style.display = 'block';
                 document.getElementById("admin-login").style.display = 'none';
